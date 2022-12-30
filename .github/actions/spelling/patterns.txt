@@ -105,4 +105,4 @@
 
 # Localization keys
 x:Key="[^"]+"
-{DynamicResource [^"]+
+{DynamicResource [^"]+}
