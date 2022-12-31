@@ -185,7 +185,7 @@ And you can download <a href="https://github.com/Flow-Launcher/Flow.Launcher/dis
 
 - There are various themes and you also can make your own.
 
-### 💬 Language
+### 💬 Languge
 
 - Supports languages from Chinese to Italian and more.
 - Supports Pinyin search.
