@@ -71,4 +71,3 @@ ignore$
 \.csproj$
 \.DotSettings$
 \.targets$
-
