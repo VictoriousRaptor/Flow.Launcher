@@ -93,6 +93,9 @@ jobs:
           cspell:csharp/csharp.txt
           cspell:dotnet/dotnet.txt
           cspell:python/src/python/python-lib.txt
+        warnings:
+          binary-file,deprecated-feature,large-file,limited-references,noisy-file,non-alpha-in-dictionary,unexpected-line-ending,whitespace-in-dictionary,minified-file,unsupported-configuration,unrecognized-spelling
+
 
 
   comment-push:

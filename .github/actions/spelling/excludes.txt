@@ -5,15 +5,6 @@
 (?:^|/)go\.sum$
 (?:^|/)package(?:-lock|)\.json$
 (?:^|/)vendor/
-(?:^|/)Languages/(?!en.xaml)
-Scripts/
-Plugins/Flow.Launcher.Plugin.WindowsSettings/Properties/
-Plugins/Flow.Launcher.Plugin.WindowsSettings/WindowsSettings.json
-(?:^|/)FodyWeavers.xml
-ignore$
-\.ps1$
-\.yml$
-\.json$
 \.a$
 \.ai$
 \.avi$
@@ -29,6 +20,7 @@ ignore$
 \.exe$
 \.gif$
 \.gitattributes$
+\.gitignore$
 \.graffle$
 \.gz$
 \.icns$
@@ -64,4 +56,19 @@ ignore$
 \.zip$
 ^\.github/actions/spelling/
 ^\Q.github/workflows/spelling.yml\E$
+# Custom
+(?:^|/)Languages/(?!en.xaml)
+Scripts/
+Plugins/Flow.Launcher.Plugin.WindowsSettings/Properties/
+Plugins/Flow.Launcher.Plugin.WindowsSettings/WindowsSettings.json
+Plugins/Flow.Launcher.Plugin.WebSearch/setting.json
+(?:^|/)FodyWeavers.xml
+.editorconfig
+ignore$
+\.ps1$
+\.yml$
+\.sln$
+\.csproj$
+\.DotSettings$
+\.targets$
 
