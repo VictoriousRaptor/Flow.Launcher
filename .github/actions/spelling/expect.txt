@@ -33,3 +33,4 @@ lnk
 amazonaws
 mscorlib
 pythonw
+dotnet
