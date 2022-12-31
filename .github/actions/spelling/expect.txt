@@ -34,3 +34,4 @@ amazonaws
 mscorlib
 pythonw
 dotnet
+winget
