@@ -1,4 +1,4 @@
-﻿What does Flow.Launcher.Plugin do?
+﻿What does Flow.Launcher.Plugdin do?
 ====
 
 * Defines base objects and interfaces for plugins
