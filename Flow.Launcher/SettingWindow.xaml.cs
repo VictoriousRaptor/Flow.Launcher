@@ -160,7 +160,7 @@ namespace Flow.Launcher
             var item = viewModel.SelectedCustomPluginHotkey;
             if (item != null)
             {
-                CustomQueryHotkeySetting window = new CustomQueryHotkeySetting(this, settings);
+                CustomQueryHotkeySetting window = new CustomQueryHotkeySetting(settings);
                 window.UpdateItem(item);
                 window.ShowDialog();
             }
@@ -172,7 +172,7 @@ namespace Flow.Launcher
 
         private void OnAddCustomHotkeyClick(object sender, RoutedEventArgs e)
         {
-            new CustomQueryHotkeySetting(this, settings).ShowDialog();
+            new CustomQueryHotkeySetting(settings).ShowDialog();
         }
 
         #endregion
