@@ -602,6 +602,12 @@ namespace Flow.Launcher.ViewModel
             set => Settings.SettingWindowLeft = value;
         }
 
+        public WindowState SettingWindowState
+        {
+            get => Settings.SettingWindowState;
+            set => Settings.SettingWindowState = value;
+        }
+
         public Brush PreviewBackground
         {
             get

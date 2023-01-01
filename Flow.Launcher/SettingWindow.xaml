@@ -21,12 +21,13 @@
     d:DataContext="{d:DesignInstance vm:SettingWindowViewModel}"
     Closed="OnClosed"
     Icon="Images\app.ico"
-    Left="{Binding SettingWindowLeft, Mode=TwoWay}"
     Loaded="OnLoaded"
     MouseDown="window_MouseDown"
     ResizeMode="CanResize"
     StateChanged="Window_StateChanged"
+    WindowState="{Binding SettingWindowState, Mode=TwoWay}"
     Top="{Binding SettingWindowTop, Mode=TwoWay}"
+    Left="{Binding SettingWindowLeft, Mode=TwoWay}"
     WindowStartupLocation="Manual"
     mc:Ignorable="d">
     <WindowChrome.WindowChrome>

@@ -39,9 +39,7 @@ namespace Flow.Launcher
             DataContext = viewModel;
             this.viewModel = viewModel;
             API = api;
-            InitializePosition();
             InitializeComponent();
-
         }
 
         #region General
@@ -222,9 +220,6 @@ namespace Flow.Launcher
 
         private void OnClosed(object sender, EventArgs e)
         {
-            settings.SettingWindowState = WindowState;
-            settings.SettingWindowTop = Top;
-            settings.SettingWindowLeft = Left;
             viewModel.Save();
         }
 
@@ -467,17 +462,11 @@ namespace Flow.Launcher
 
         public void InitializePosition()
         {
-            if (settings.SettingWindowTop >= 0 && settings.SettingWindowLeft >= 0)
+            if (viewModel.SettingWindowTop < 0 || viewModel.SettingWindowLeft < 0)
             {
-                Top = settings.SettingWindowTop;
-                Left = settings.SettingWindowLeft;
+                viewModel.SettingWindowTop = WindowTop();
+                viewModel.SettingWindowLeft = WindowLeft();
             }
-            else
-            {
-                Top = WindowTop();
-                Left = WindowLeft();
-            }
-            WindowState = settings.SettingWindowState;
         }
 
         public double WindowLeft()
