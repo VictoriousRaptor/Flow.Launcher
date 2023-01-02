@@ -52,7 +52,7 @@ namespace Flow.Launcher.Infrastructure.UserSettings
         public double SettingWindowHeight { get; set; } = 700;
         public double SettingWindowTop { get; set; }
         public double SettingWindowLeft { get; set; }
-        public System.Windows.WindowState SettingWindowState { get; set; } = WindowState.Normal;
+        public bool ShowSettingWindowMaximized { get; set; } = false;
 
         public int CustomExplorerIndex { get; set; } = 0;
 

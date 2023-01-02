@@ -65,7 +65,7 @@ namespace Flow.Launcher.ViewModel
                         break;
                 }
             };
-
+            settingWindowState = Settings.ShowSettingWindowMaximized ? WindowState.Maximized : WindowState.Normal;
         }
 
         public Settings Settings { get; set; }
@@ -602,10 +602,22 @@ namespace Flow.Launcher.ViewModel
             set => Settings.SettingWindowLeft = value;
         }
 
+        private WindowState settingWindowState = WindowState.Normal;
         public WindowState SettingWindowState
         {
-            get => Settings.SettingWindowState;
-            set => Settings.SettingWindowState = value;
+            get => settingWindowState;
+            set
+            {
+                settingWindowState = value;
+                if (value == WindowState.Maximized)
+                {
+                    Settings.ShowSettingWindowMaximized = true;
+                }
+                else if (value == WindowState.Normal)
+                {
+                    Settings.ShowSettingWindowMaximized = false;
+                }
+            }
         }
 
         public Brush PreviewBackground
