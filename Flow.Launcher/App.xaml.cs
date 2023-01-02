@@ -28,7 +28,7 @@ namespace Flow.Launcher
         private Settings _settings;
         private MainViewModel _mainVM;
         private SettingWindowViewModel _settingsVM;
-        private readonly Updater _updater = new Updater(Flow.Launcher.Properties.Settings.Default.GithubRepo);
+        private readonly Updater _updater = new Updater(Constant.GitHubRepo);
         private readonly Portable _portable = new Portable();
         private readonly PinyinAlphabet _alphabet = new PinyinAlphabet();
         private StringMatcher _stringMatcher;

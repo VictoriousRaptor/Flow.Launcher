@@ -848,7 +848,7 @@ namespace Flow.Launcher.ViewModel
         public string ReleaseNotes => _updater.GitHubRepository + @"/releases/latest";
         public string Documentation => Constant.Documentation;
         public string Docs => Constant.Docs;
-        public string Github => Constant.GitHub;
+        public string Github => Constant.GitHubRepo;
         public string Version
         {
             get
