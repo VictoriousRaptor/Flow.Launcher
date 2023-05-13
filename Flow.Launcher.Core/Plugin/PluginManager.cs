@@ -118,7 +118,8 @@ namespace Flow.Launcher.Core.Plugin
             API = api;
             var failedPlugins = new ConcurrentQueue<PluginPair>();
 
-            var InitTasks = AllPlugins.Select(pair => Task.Run(async delegate
+            var InitTasks = AllPlugins.Where(pair => !pair.Metadata.Disabled).
+                Select(pair => Task.Run(async delegate
             {
                 try
                 {
