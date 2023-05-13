@@ -47,7 +47,14 @@ namespace Flow.Launcher.ViewModel
         public bool PluginState
         {
             get => !PluginPair.Metadata.Disabled;
-            set => PluginPair.Metadata.Disabled = !value;
+            set
+            {
+                PluginPair.Metadata.Disabled = !value;
+                if (value)
+                {
+                    _ = PluginManager.InitializePluginAsync(PluginPair);
+                }
+            }
         }
         public bool IsExpanded
         {

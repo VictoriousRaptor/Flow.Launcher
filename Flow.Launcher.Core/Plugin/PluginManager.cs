@@ -48,6 +48,8 @@ namespace Flow.Launcher.Core.Plugin
             }
         }
 
+        private static readonly ConcurrentDictionary<string, bool> InitializedPlugins = new();
+        
         /// <summary>
         /// Save json and ISavable 
         /// </summary>
@@ -109,6 +111,50 @@ namespace Flow.Launcher.Core.Plugin
             AllPlugins = PluginsLoader.Plugins(_metadatas, Settings);
         }
 
+
+        /// <summary>
+        /// Call initialize for specified plugin
+        /// </summary>
+        public static async Task InitializePluginAsync(PluginPair pair)
+        {
+            if (API == null)
+            {
+                Log.Warn(nameof(PluginManager), "API is null");
+                return;
+            }
+            else if (InitializedPlugins.ContainsKey(pair.Metadata.ID))
+            {
+                Log.Warn(nameof(PluginManager), $"Plugin {pair.Metadata.Name} already initialized");
+                return;
+            }
+
+            try
+            {
+                var milliseconds = await Stopwatch.DebugAsync($"|PluginManager.InitializePluginAsync|Init method time cost for <{pair.Metadata.Name}>",
+                    () => pair.Plugin.InitAsync(new PluginInitContext(pair.Metadata, API)));
+
+                pair.Metadata.InitTime += milliseconds;
+                Log.Info(
+                    $"|PluginManager.InitializePluginAsync|Total init cost for <{pair.Metadata.Name}> is <{pair.Metadata.InitTime}ms>");
+                InitializedPlugins[pair.Metadata.ID] = true;
+            }
+            catch (Exception e)
+            {
+                Log.Exception(nameof(PluginManager), $"Fail to Init plugin: {pair.Metadata.Name}", e);
+                pair.Metadata.Disabled = true;
+                // TODO translate
+                API.ShowMsg($"Fail to Init Plugin",
+                            $"Plugins: {pair.Metadata.Name} - fail to load and would be disabled, please contact plugin creator for help",
+                            "", false);
+                return;
+            }
+
+            if (pair.Plugin is IContextMenu)
+                _contextMenuPlugins = _contextMenuPlugins.Append(pair);
+
+            AddPluginKeywords(pair);
+        }
+
         /// <summary>
         /// Call initialize for all plugins
         /// </summary>
@@ -129,6 +175,7 @@ namespace Flow.Launcher.Core.Plugin
                     pair.Metadata.InitTime += milliseconds;
                     Log.Info(
                         $"|PluginManager.InitializePlugins|Total init cost for <{pair.Metadata.Name}> is <{pair.Metadata.InitTime}ms>");
+                    InitializedPlugins[pair.Metadata.ID] = true;
                 }
                 catch (Exception e)
                 {
@@ -143,20 +190,7 @@ namespace Flow.Launcher.Core.Plugin
             _contextMenuPlugins = GetPluginsForInterface<IContextMenu>();
             foreach (var plugin in AllPlugins)
             {
-                // set distinct on each plugin's action keywords helps only firing global(*) and action keywords once where a plugin
-                // has multiple global and action keywords because we will only add them here once.
-                foreach (var actionKeyword in plugin.Metadata.ActionKeywords.Distinct())
-                {
-                    switch (actionKeyword)
-                    {
-                        case Query.GlobalPluginWildcardSign:
-                            GlobalPlugins.Add(plugin);
-                            break;
-                        default:
-                            NonGlobalPlugins[actionKeyword] = plugin;
-                            break;
-                    }
-                }
+                AddPluginKeywords(plugin);
             }
 
             if (failedPlugins.Any())
@@ -165,6 +199,24 @@ namespace Flow.Launcher.Core.Plugin
                 API.ShowMsg($"Fail to Init Plugins",
                     $"Plugins: {failed} - fail to load and would be disabled, please contact plugin creator for help",
                     "", false);
+            }
+        }
+
+        private static void AddPluginKeywords(PluginPair plugin)
+        {
+            // set distinct on each plugin's action keywords helps only firing global(*) and action keywords once where a plugin
+            // has multiple global and action keywords because we will only add them here once.
+            foreach (var actionKeyword in plugin.Metadata.ActionKeywords.Distinct())
+            {
+                switch (actionKeyword)
+                {
+                    case Query.GlobalPluginWildcardSign:
+                        GlobalPlugins.Add(plugin);
+                        break;
+                    default:
+                        NonGlobalPlugins[actionKeyword] = plugin;
+                        break;
+                }
             }
         }
 
