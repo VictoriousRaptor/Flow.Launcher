@@ -11,6 +11,7 @@ name: Check Spelling
 #   or collapse a comment (in the case where it had previously made a comment and now no longer needs to show a comment)
 #   it needs `pull-requests: write` in order to manipulate those comments.
 
+
 # Updating pull request branches is managed via comment handling.
 # For details, see: https://github.com/check-spelling/check-spelling/wiki/Feature:-Update-expect-list
 #
@@ -35,7 +36,6 @@ name: Check Spelling
 
 
 on:
-
   pull_request_target:
     branches:
     - '**'
@@ -79,7 +79,7 @@ jobs:
         use_sarif: 0 # to show in pr page
         extra_dictionary_limit: 10
         check_commit_messages: commits title description
-        only_check_changed_files: 1
+        only_check_changed_files: 0
         quit_without_error: true
         warnings:
           binary-file,deprecated-feature,large-file,limited-references,noisy-file,non-alpha-in-dictionary,unexpected-line-ending,whitespace-in-dictionary,minified-file,unsupported-configuration,unrecognized-spelling,no-newline-at-eof
@@ -115,7 +115,7 @@ jobs:
       uses: check-spelling/check-spelling@main
       with:
         checkout: true
-        spell_check_this: check-spelling/spell-check-this@main
+        spell_check_this: check-spelling/spell-check-this@v0.0.22 
         task: ${{ needs.spelling.outputs.followup }}
         experimental_apply_changes_via_bot: 1
 
