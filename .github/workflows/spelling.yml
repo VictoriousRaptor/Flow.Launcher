@@ -43,8 +43,6 @@ on:
     branches:
     - '**'
     # - '!l10n_dev'
-    tags-ignore:
-    - "**"
     types:
     - 'opened'
     - 'reopened'
