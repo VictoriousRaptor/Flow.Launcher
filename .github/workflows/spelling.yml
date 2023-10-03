@@ -11,6 +11,7 @@ name: Check Spelling
 #   or collapse a comment (in the case where it had previously made a comment and now no longer needs to show a comment)
 #   it needs `pull-requests: write` in order to manipulate those comments.
 
+
 # Updating pull request branches is managed via comment handling.
 # For details, see: https://github.com/check-spelling/check-spelling/wiki/Feature:-Update-expect-list
 #
