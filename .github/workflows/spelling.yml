@@ -35,18 +35,11 @@ name: Check Spelling
 
 
 on:
-  push:
-    branches:
-    - '**'
-    - '!l10n_dev'
-    tags-ignore:
-    - "**"
+
   pull_request_target:
     branches:
     - '**'
     # - '!l10n_dev'
-    tags-ignore:
-    - "**"
     types:
     - 'opened'
     - 'reopened'
