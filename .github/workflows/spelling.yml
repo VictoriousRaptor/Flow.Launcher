@@ -84,7 +84,7 @@ jobs:
         use_sarif: 0 # to show in pr page
         extra_dictionary_limit: 10
         check_commit_messages: commits title description
-        only_check_changed_files: 1
+        only_check_changed_files: 0
         quit_without_error: true
         warnings:
           binary-file,deprecated-feature,large-file,limited-references,noisy-file,non-alpha-in-dictionary,unexpected-line-ending,whitespace-in-dictionary,minified-file,unsupported-configuration,unrecognized-spelling,no-newline-at-eof
