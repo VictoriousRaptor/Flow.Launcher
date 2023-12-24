@@ -685,10 +685,6 @@ namespace Flow.Launcher.ViewModel
                 {
                     _ = SwitchExternalPreviewAsync(path, false);
                 }
-                else
-                {
-                    _ = CloseExternalPreviewAsync();
-                }
             }
         }
 
@@ -1103,9 +1099,6 @@ namespace Flow.Launcher.ViewModel
         {
             // Trick for no delay
             MainWindowOpacity = 0;
-
-            if (Settings.UseExternalPreview)
-                _ = CloseExternalPreviewAsync();
 
             if (!SelectedIsFromQueryResults())
             {
