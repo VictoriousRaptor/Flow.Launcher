@@ -173,8 +173,12 @@ namespace Flow.Launcher.Infrastructure.UserSettings
         /// </summary>
         public bool ShouldUsePinyin { get; set; } = false;
 
+        public bool UseExternalPreview { get; set; } = false;
+        
+
         public bool ShouldUseDoublePin { get; set; } = false;
         public bool AlwaysPreview { get; set; } = false;
+        
         public bool AlwaysStartEn { get; set; } = false;
 
         [JsonInclude, JsonConverter(typeof(JsonStringEnumConverter))]
