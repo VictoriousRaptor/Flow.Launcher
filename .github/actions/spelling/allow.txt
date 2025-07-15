@@ -6,3 +6,12 @@ runcount
 Firefox
 Português
 Português (Brasil)
+XiaoHe
+ZiRanMa
+WeiRuan
+ZhiNengABC
+ZiGuangPinYin
+PinYinJiaJia
+XingKongJianDao
+DaNiu
+XiaoLang
